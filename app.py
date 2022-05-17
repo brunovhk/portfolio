@@ -13,7 +13,7 @@ mail_settings = {
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
     "MAIL_USERNAME": os.getenv("EMAIL"),
-    "MAIL_PASSWORD": os.getenv("SENHA"),
+    "MAIL_PASSWORD": os.getenv("SENHA")
 }
 
 app.config.update(mail_settings)
