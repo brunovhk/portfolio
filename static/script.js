@@ -2,6 +2,7 @@
 
 const menuMobile = document.querySelector(".menu-mobile");
 const body = document.querySelector("body");
+const logo = document.querySelectorAll('#logo path')
 
 menuMobile.addEventListener("click", () => {
     menuMobile.classList.contains("bi-list")
@@ -59,3 +60,7 @@ btnEnviar.addEventListener("click", () =>{
 setTimeout(()=> {
     document.querySelector('#alerta').style.display = 'none';
 }, 5000)
+// Logo
+for (let i = 0; i < logo.length; i++){
+    console.log(`Letter ${i} is ${logo[i].getTotalLength()}`);
+}
