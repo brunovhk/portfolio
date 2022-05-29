@@ -91,7 +91,7 @@ html, body {
 }
 
 section#inicio {
-    background-image: url("./img/bannerPortfolio.jpg");
+    background-image: url("./img/bannerPortfolio-min.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
