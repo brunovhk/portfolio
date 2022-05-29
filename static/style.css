@@ -170,6 +170,9 @@ i.menu-mobile {
     #main {
         margin-left: 0;
     }
+    #subtitle{
+        display: none;
+    }
 }
 
 *::-webkit-scrollbar {
