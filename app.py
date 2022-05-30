@@ -1,13 +1,14 @@
 from flask import Flask, render_template, redirect, request, flash
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
-from flask_compress import Compress
 import os
+from gzip_compress import GzipCompress
+
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = 'brunoportfolio'
-Compress(app)
+GzipCompress(app)
 
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
@@ -45,8 +46,8 @@ def send():
         )
         msg = Message(
             subject=f'{formContato.nome} te enviou uma mensagem no portfólio',
-            sender = app.config.get("MAIL_USERNAME"),
-            recipients=['brunorick11@gmail.com',app.config.get("MAIL_USERNAME")],
+            sender=app.config.get("MAIL_USERNAME"),
+            recipients=['brunorick11@gmail.com', app.config.get("MAIL_USERNAME")],
             body=f'''
             {formContato.nome} com o e-mail {formContato.email}, te enviou a seguinte mensagem:
             {formContato.msg}
@@ -55,6 +56,7 @@ def send():
         mail.send(msg)
         flash('Mensagem enviada com sucesso!')
     return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
