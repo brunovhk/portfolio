@@ -532,3 +532,7 @@ BADGES FIM
         fill: white;
     }
 }
+
+#topParentId *{
+   -webkit-transform-style: preserve-3d !important;
+}
