@@ -59,7 +59,7 @@ def send():
 
 @app.after_request
 def compress(response):
-    accept_encoding = flask.request.headers.get('accept-encoding', '').lower()
+    accept_encoding = Flask.request.headers.get('accept-encoding', '').lower()
     if response.status_code < 200 or response.status_code >= 300 or response.direct_passthrough or 'gzip' not in accept_encoding or 'Content-Encoding' in response.headers:  return response
     content = gzip.compress(response.get_data(),
                             compresslevel=9)  # 0: no compression, 1: fastest, 9: slowest. Default: 9
