@@ -1,13 +1,13 @@
 from flask import Flask, render_template, redirect, request, flash
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
-from whitenoise import WhiteNoise
+from flask_compress import Compress
 import os
 load_dotenv()
 
-flapp = Flask(__name__)
-app = WhiteNoise(flapp, root='./subdir/')
-flapp.secret_key = 'brunoportfolio'
+app = Flask(__name__)
+app.secret_key = 'brunoportfolio'
+Compress(app)
 
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
@@ -30,12 +30,12 @@ class Contato:
         self.msg = msg
 
 
-@flapp.route('/')
+@app.route('/')
 def index():
     return render_template('index.html')
 
 
-@flapp.route('/send', methods=['GET', 'POST'])
+@app.route('/send', methods=['GET', 'POST'])
 def send():
     if request.method == 'POST':
         formContato = Contato(
