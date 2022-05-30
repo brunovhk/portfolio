@@ -1,13 +1,14 @@
 from flask import Flask, render_template, redirect, request, flash
-import gzip
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
+from flask_compress import Compress
 import os
 
 load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = 'brunoportfolio'
+Compress(app)
 
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
@@ -55,18 +56,6 @@ def send():
         mail.send(msg)
         flash('Mensagem enviada com sucesso!')
     return redirect('/')
-
-
-@app.after_request
-def compress(response):
-    accept_encoding = Flask.request.headers.get('accept-encoding', '').lower()
-    if response.status_code < 200 or response.status_code >= 300 or response.direct_passthrough or 'gzip' not in accept_encoding or 'Content-Encoding' in response.headers:  return response
-    content = gzip.compress(response.get_data(),
-                            compresslevel=9)  # 0: no compression, 1: fastest, 9: slowest. Default: 9
-    response.set_data(content)
-    response.headers['content-length'] = len(content)
-    response.headers['content-encoding'] = 'gzip'
-    return response
 
 
 if __name__ == '__main__':
