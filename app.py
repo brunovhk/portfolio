@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 flapp = Flask(__name__)
-app = WhiteNoise(flapp, root='./static/')
+app = WhiteNoise(flapp, root='./subdir/')
 flapp.secret_key = 'brunoportfolio'
 
 mail_settings = {
