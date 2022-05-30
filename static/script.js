@@ -1,4 +1,4 @@
-/* Abre e fecha o menu lateral em modo mobile */
+// Abre e fecha o menu lateral em modo mobile
 
 const menuMobile = document.querySelector(".menu-mobile");
 const body = document.querySelector("body");
