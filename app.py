@@ -7,7 +7,7 @@ load_dotenv()
 
 flapp = Flask(__name__)
 app = WhiteNoise(flapp, root='./static/')
-app.secret_key = 'brunoportfolio'
+flapp.secret_key = 'brunoportfolio'
 
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
@@ -30,12 +30,12 @@ class Contato:
         self.msg = msg
 
 
-@app.route('/')
+@flapp.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('/send', methods=['GET', 'POST'])
+@flapp.route('/send', methods=['GET', 'POST'])
 def send():
     if request.method == 'POST':
         formContato = Contato(
