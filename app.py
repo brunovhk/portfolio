@@ -1,12 +1,12 @@
 from flask import Flask, render_template, redirect, request, flash
-from flask_compress import Compress
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
+from whitenoise import WhiteNoise
 import os
 load_dotenv()
 
-app = Flask(__name__)
-Compress(app)
+flapp = Flask(__name__)
+app = WhiteNoise(flapp, root='./static/')
 app.secret_key = 'brunoportfolio'
 
 mail_settings = {
