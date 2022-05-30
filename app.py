@@ -1,10 +1,12 @@
 from flask import Flask, render_template, redirect, request, flash
+from flask_compress import Compress
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os
 load_dotenv()
 
 app = Flask(__name__)
+Compress(app)
 app.secret_key = 'brunoportfolio'
 
 mail_settings = {
